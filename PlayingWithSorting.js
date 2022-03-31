@@ -42,7 +42,25 @@ function swap(arr, index1, index2) {
     arr[index2] = temp;
 }
 
-var numElements = 100;
-var myNums = new CArray(numElements);
-myNums.setData();
-console.log(myNums.toString());
+// Bubble Sort
+function bubbleSort() {
+    var numElements = this.dataStore.length;
+    var temp;
+    for (var outer = numElements; outer >= 2; --outer) {
+        for (var inner = 0; inner <= outer - 1; ++inner) {
+            if (this.dataStore[inner] > this.dataStore[inner + 1]) {
+                swap(this.dataStore, inner, inner + 1);
+            }
+        }
+    }
+}
+
+function run() {
+    var numElements = 10;
+    var myNums = new CArray(numElements);
+    myNums.setData();
+    console.log(myNums.toString());
+    mynums.bubbleSort();
+    console.log();
+    console.log(mynums.toString());
+}
