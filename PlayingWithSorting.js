@@ -93,7 +93,7 @@ function insertionSort() {
 }
 
 function run() {
-    var numElements = 100;
+    var numElements = 1000;
     var nums = new CArray(numElements);
     nums.setData();
     var start = new Date().getTime();
