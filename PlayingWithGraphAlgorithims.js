@@ -99,13 +99,13 @@ function Graph() {
 }
 
 function bfs(graph, source) {
-  var queue = [ { vertex: source, count: 0 } ],
-      visited = { source: true },
-      tail = 0;
+  var queue = [{ vertex: source, count: 0 }],
+    visited = { source: true },
+    tail = 0;
   while (tail < queue.length) {
     var u = queue[tail].vertex,
-        count = queue[tail++].count;  // Pop a vertex off the queue.
-        console.log('distance from ' + source + ' to ' + u + ': ' + count);
+      count = queue[tail++].count;  // Pop a vertex off the queue.
+    console.log('distance from ' + source + ' to ' + u + ': ' + count);
     graph.neighbors[u].forEach(function (v) {
       if (!visited[v]) {
         visited[v] = true;
@@ -117,16 +117,16 @@ function bfs(graph, source) {
 
 function shortestPath(graph, source, target) {
   if (source == target) {   // Delete these four lines if
-      console.log(source);          // you want to look for a cycle
+    console.log(source);  // you want to look for a cycle
     return;                 // when the source is equal to
   }                         // the target.
-  var queue = [ source ],
-      visited = { source: true },
-      predecessor = {},
-      tail = 0;
+  var queue = [source],
+    visited = { source: true },
+    predecessor = {},
+    tail = 0;
   while (tail < queue.length) {
     var u = queue[tail++],  // Pop a vertex off the queue.
-        neighbors = graph.neighbors[u];
+      neighbors = graph.neighbors[u];
     for (var i = 0; i < neighbors.length; ++i) {
       var v = neighbors[i];
       if (visited[v]) {
@@ -134,7 +134,7 @@ function shortestPath(graph, source, target) {
       }
       visited[v] = true;
       if (v === target) {   // Check if the path is complete.
-        var path = [ v ];   // If so, backtrack through the path.
+        var path = [v];   // If so, backtrack through the path.
         while (u !== source) {
           path.push(u);
           u = predecessor[u];
@@ -167,6 +167,12 @@ function run() {
   shortestPath(graph, 'B', 'G');
   console.log();
   shortestPath(graph, 'G', 'A');
+
+  g.vertexList = ["CS1", "CS2", "Data Structures",
+    "Assembly Language", "Operating Systems",
+    "Algorithms"];
+  g.showGraph();
+  g.topSort();
 };
 
 // TopSort Function
@@ -174,17 +180,17 @@ function topSort() {
   var stack = [];
   var visited = [];
   for (var i = 0; i < this.vertices; i++) {
-      visited[i] = false;
+    visited[i] = false;
   }
   for (var i = 0; i < this.vertices; i++) {
-      if (visited[i] == false) {
-          this.topSortHelper(i, visited, stack);
-      }
+    if (visited[i] == false) {
+      this.topSortHelper(i, visited, stack);
+    }
   }
   for (var i = 0; i < stack.length; i++) {
-      if (stack[i] != undefined && stack[i] != false) {
-          console.log(this.vertexList[stack[i]]);
-      }
+    if (stack[i] != undefined && stack[i] != false) {
+      console.log(this.vertexList[stack[i]]);
+    }
   }
 }
 
@@ -192,9 +198,9 @@ function topSort() {
 function topSortHelper(v, visited, stack) {
   visited[v] = true;
   for (var w of this.adj[v]) {
-      if (!visited[w]) {
-          this.topSortHelper(visited[w], visited, stack);
-      }
+    if (!visited[w]) {
+      this.topSortHelper(visited[w], visited, stack);
+    }
   }
   stack.push(v);
 }
