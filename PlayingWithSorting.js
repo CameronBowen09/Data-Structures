@@ -8,24 +8,30 @@ function CArray(numElements) {
     this.clear = clear;
     this.setData = setData;
     this.swap = swap;
+    this.bubbleSort = bubbleSort;
+    this.selectionSort = selectionSort;
     for (var i = 0; i < numElements; ++i) {
         this.dataStore[i] = i;
     }
 }
+
 function setData() {
     for (var i = 0; i < this.numElements; ++i) {
         this.dataStore[i] = Math.floor(Math.random() *
             (this.numElements + 1));
     }
 }
+
 function clear() {
     for (var i = 0; i < this.dataStore.length; ++i) {
         this.dataStore[i] = 0;
     }
 }
+
 function insert(element) {
     this.dataStore[this.pos++] = element;
 }
+
 function toString() {
     var retstr = "";
     for (var i = 0; i < this.dataStore.length; ++i) {
@@ -36,6 +42,7 @@ function toString() {
     }
     return retstr;
 }
+
 function swap(arr, index1, index2) {
     var temp = arr[index1];
     arr[index1] = arr[index2];
@@ -55,12 +62,32 @@ function bubbleSort() {
     }
 }
 
+// Selecting Sort
+function selectionSort() {
+    var min, temp;
+    for (var outer = 0; outer <= this.dataStore.length - 2; ++outer) {
+        min = outer;
+        for (var inner = outer + 1;
+            inner <= this.dataStore.length - 1; ++inner) {
+            if (this.dataStore[inner] < this.dataStore[min]) {
+                min = inner;
+            }
+        }
+        swap(this.dataStore, outer, min);
+    }
+}
+
 function run() {
     var numElements = 10;
     var myNums = new CArray(numElements);
     myNums.setData();
     console.log(myNums.toString());
-    mynums.bubbleSort();
+    myNums.bubbleSort();
     console.log();
-    console.log(mynums.toString());
+    console.log(myNums.toString());
+    myNums.selectionSort();
+    console.log();
+    console.log(myNums.toString());
 }
+
+run();
