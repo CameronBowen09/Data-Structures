@@ -17,6 +17,9 @@ function Graph(v) {
   this.edgeTo = [];
   this.hasPathTo = hasPathTo;
   this.pathTo = pathTo;
+  this.topSort = topSort;
+  this.topSortHelper = topSortHelper;
+  this.vertexList = [];
 }
 
 function addEdge(v, w) {
@@ -67,17 +70,6 @@ function bfs(s) {
       }
     }
   }
-}
-
-function run() {
-  g = new Graph(5);
-  g.addEdge(0, 1);
-  g.addEdge(0, 2);
-  g.addEdge(1, 3);
-  g.addEdge(2, 4);
-  // g.showGraph();
-  // g.dfs(0);
-  // g.bfs(2);
 }
 
 // Shortest Path
@@ -168,12 +160,14 @@ function run() {
   console.log();
   shortestPath(graph, 'G', 'A');
 
-  g.vertexList = ["CS1", "CS2", "Data Structures",
+  graph.vertexList = ["CS1", "CS2", "Data Structures",
     "Assembly Language", "Operating Systems",
     "Algorithms"];
-  g.showGraph();
-  g.topSort();
+  graph.showGraph();
+  graph.topSort();
 };
+
+run();
 
 // TopSort Function
 function topSort() {
