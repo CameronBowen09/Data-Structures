@@ -189,3 +189,12 @@ function topSort() {
 }
 
 // TopSortHelper Function
+function topSortHelper(v, visited, stack) {
+  visited[v] = true;
+  for (var w of this.adj[v]) {
+      if (!visited[w]) {
+          this.topSortHelper(visited[w], visited, stack);
+      }
+  }
+  stack.push(v);
+}
