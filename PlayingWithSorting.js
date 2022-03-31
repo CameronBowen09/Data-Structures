@@ -10,6 +10,7 @@ function CArray(numElements) {
     this.swap = swap;
     this.bubbleSort = bubbleSort;
     this.selectionSort = selectionSort;
+    this.insertionSort = insertionSort;
     for (var i = 0; i < numElements; ++i) {
         this.dataStore[i] = i;
     }
@@ -92,19 +93,27 @@ function insertionSort() {
 }
 
 function run() {
-    var numElements = 10;
-    var myNums = new CArray(numElements);
-    // myNums.setData();
-    // console.log(myNums.toString());
-    // myNums.bubbleSort();
-    // console.log();
-    // console.log(myNums.toString());
-    // myNums.selectionSort();
-    // console.log();
-    // console.log(myNums.toString());
-    myNums.insertionSort();
-    console.log();
-    console.log(myNums.toString());
+    var numElements = 100;
+    var nums = new CArray(numElements);
+    nums.setData();
+    var start = new Date().getTime();
+    nums.bubbleSort();
+    var stop = new Date().getTime();
+    var elapsed = stop - start;
+    console.log("Elapsed time for the bubble sort on " +
+        numElements + " elements is: " + elapsed + " milliseconds.");
+    start = new Date().getTime();
+    nums.selectionSort();
+    stop = new Date().getTime();
+    elapsed = stop - start;
+    console.log("Elapsed time for the selection sort on " +
+        numElements + " elements is: " + elapsed + " milliseconds.");
+    start = new Date().getTime();
+    nums.insertionSort();
+    stop = new Date().getTime();
+    elapsed = stop - start;
+    console.log("Elapsed time for the insertion sort on " +
+        numElements + " elements is: " + elapsed + " milliseconds.");
 }
 
 run();
