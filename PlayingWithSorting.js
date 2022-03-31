@@ -77,15 +77,32 @@ function selectionSort() {
     }
 }
 
+// Insertion Sort
+function insertionSort() {
+    var temp, inner;
+    for (var outer = 1; outer <= this.dataStore.length - 1; ++outer) {
+        temp = this.dataStore[outer];
+        inner = outer;
+        while (inner > 0 && (this.dataStore[inner - 1] >= temp)) {
+            this.dataStore[inner] = this.dataStore[inner - 1];
+            --inner;
+        }
+        this.dataStore[inner] = temp;
+    }
+}
+
 function run() {
     var numElements = 10;
     var myNums = new CArray(numElements);
-    myNums.setData();
-    console.log(myNums.toString());
-    myNums.bubbleSort();
-    console.log();
-    console.log(myNums.toString());
-    myNums.selectionSort();
+    // myNums.setData();
+    // console.log(myNums.toString());
+    // myNums.bubbleSort();
+    // console.log();
+    // console.log(myNums.toString());
+    // myNums.selectionSort();
+    // console.log();
+    // console.log(myNums.toString());
+    myNums.insertionSort();
     console.log();
     console.log(myNums.toString());
 }
