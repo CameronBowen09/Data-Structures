@@ -1,4 +1,3 @@
-// An Array Test Bed
 function CArray(numElements) {
     this.dataStore = [];
     this.pos = 0;
@@ -11,6 +10,7 @@ function CArray(numElements) {
     this.bubbleSort = bubbleSort;
     this.selectionSort = selectionSort;
     this.insertionSort = insertionSort;
+    this.qSort = qSort;
     for (var i = 0; i < numElements; ++i) {
         this.dataStore[i] = i;
     }
@@ -92,11 +92,32 @@ function insertionSort() {
     }
 }
 
+// Quick Sort
+function qSort(arr) {
+    if (arr.length == 0) {
+        return [];
+    }
+    var left = [];
+    var right = [];
+    var pivot = arr[0];
+    for (var i = 1; i < arr.length; i++) {
+        console.log("pivot: " + pivot + " current element: " + arr[i]);
+        if (arr[i] < pivot) {
+            console.log("moving " + arr[i] + " to the left");
+            left.push(arr[i]);
+        } else {
+            console.log("moving " + arr[i] + " to the right");
+            right.push(arr[i]);
+        }
+    }
+    return qSort(left).concat(pivot, qSort(right));
+}
+
 function run() {
-    var numElements = 1000;
+    var numElements = 10;
     var nums = new CArray(numElements);
     nums.setData();
-    var start = new Date().getTime();
+    /*var start = new Date().getTime();
     nums.bubbleSort();
     var stop = new Date().getTime();
     var elapsed = stop - start;
@@ -113,5 +134,18 @@ function run() {
     stop = new Date().getTime();
     elapsed = stop - start;
     console.log("Elapsed time for the insertion sort on " +
-        numElements + " elements is: " + elapsed + " milliseconds.");
+        numElements + " elements is: " + elapsed + " milliseconds.");*/
+
+    var a = [];
+    for (var i = 0; i < 10; ++i) {
+        a[i] = Math.floor((Math.random() * 100) + 1);
+    }
+    start = new Date().getTime();
+    stop = new Date().getTime();
+    elapsed = stop - start;
+    console.log("Elapsed time for the Quick sort on " +
+        numElements + " elements is: " + elapsed + " milliseconds. \n");
+        console.log("Original Array: " + "\n" + a + "\n");
+    nums.qSort(a);
+    console.log("\nSorted Array: " + "\n" + qSort(a));   
 }
